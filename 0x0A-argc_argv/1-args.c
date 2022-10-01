@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 {
 	(void)argv;
 	
-	printf("Total = %i\n", argc - 1);
+	printf("%i\n", argc - 1);
 	return (0);
 }
 
