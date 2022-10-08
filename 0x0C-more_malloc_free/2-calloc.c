@@ -1,47 +1,36 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * _memset -  initializes n bytes of memory to x
- * @ptr: initial adress
- * @x: variable to initialize with
- * @n: number of bytes to initialize
+ * _calloc - Allocates memory for an array of a certain number
+ * of elements each of an inputted byte size.
+ * @nmemb: The number of elements.
+ * @size: The byte size of each array element.
  *
- * Return: Return pointer char (so movements are 1 byte)
- */
-
-char *_memset(char *ptr, int x, unsigned int n)
-{
-	unsigned int i;
-
-	for (i = 0; i < n; i++)
-		ptr[i] = x;
-
-	return (ptr);
-}
-
-/**
- * _calloc -  allocates memory using malloc and initializes in 0
- * @nmemb: number of elements of array to allocate
- * @size: size of elements
- *
- * Return: Pointer to allocated memory or normal process termination
- * with a status value of 98
+ * Return: If nmemb = 0, size = 0, or the function fails - NULL.
+ * Otherwise - a pointer to the allocated memory.
  */
 
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	void *p;
+
+	void *mem;
+	char *filler;
+	unsigned int index;
 
 	if (nmemb == 0 || size == 0)
-		return (0);
+		return (NULL);
 
-	p = malloc(nmemb * size);
-	if (p == 0)
-		return (0);
-	_memset(p, 0, size * nmemb);
+	mem = malloc(size * nmemb);
 
-	return (0);
+	if (mem == NULL)
+		return (NULL);
+
+	filler = mem;
+
+	for (index = 0; index < (size * nmemb); index++)
+		filler[index] = '\0';
+
+	return (mem);
 }
 
